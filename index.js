@@ -82,11 +82,20 @@ class Particle extends Enemy {
 const x = canvas.width / 2;
 const y = canvas.height / 2;
 
-const projectiles = [];
-const enemies = [];
-const particles = [];
+let player = new Player(x, y, 10, "white");
+let projectiles = [];
+let enemies = [];
+let particles = [];
 
-const player = new Player(x, y, 10, "white");
+function init() {
+  player = new Player(x, y, 10, "white");
+  projectiles = [];
+  enemies = [];
+  particles = [];
+  score = 0;
+  scoreEl.innerHTML = score;
+  bigScoreEl.innerHTML = score;
+}
 
 function spawnEnemies() {
   setInterval(() => {
@@ -205,6 +214,7 @@ addEventListener("click", (e) => {
 });
 
 startGameBtn.addEventListener("click", () => {
+  init();
   animate();
   spawnEnemies();
   modalEl.style.display = "none";
